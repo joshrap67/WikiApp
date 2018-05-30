@@ -1,0 +1,36 @@
+#:kivy 1.10.0
+#:import Window kivy.core.window.Window
+
+<InteractionPanel>:
+    Label:
+        x: Window.width * 0.2
+        y: Window.height * 0.8
+        text: 'Current Article'
+        font_size: 30
+    Label:
+        id:app_title
+        font_size: 30
+        x: Window.width *0.2
+        y: Window.height * 0.70
+        text: ''
+    Button:
+        id: left_label_button_start
+        text: 'Start'
+        center_x: root.width / 2
+        on_press:
+            root.turn_on()
+    Button:
+        id: left_label_button_stop
+        text: 'Quit'
+        on_press:
+            root.turn_off()
+    Label:
+        id: history_label
+        x: Window.width * 0.8
+        y: Window.width * 0.7
+        text: 'History label'
+    Label:
+        x: Window.width * 0.8
+        y: Window.height * 0.8
+        text: 'Previous Articles'
+        font_size: 30
