@@ -44,9 +44,8 @@ class InteractionPanel(Widget):
         title = title.replace('- Wikipedia', '')
         new_article.set_article_name(title)
         # display to app window
-        self.ids.app_title.text = 'Article Title: '+title+' Most Common Noun: '+new_article.get_largest_word()
-        print('Title: ' + title)
-        print('Most common noun is: \"' + biggest_word + '\" with a count of: ' + str(
+        self.ids.app_attributes.text = 'Article Title: '+title+' Most Common Noun: '+new_article.get_largest_word()
+        print('Title: '+title+' Most common noun is: \"' + biggest_word + '\" with a count of: ' + str(
             big_count))
         # store the article into history
         self.store_history(new_article)
@@ -60,7 +59,7 @@ class InteractionPanel(Widget):
     def update_history(self):
         for obj in working_history.history:
             print(repr(obj))
-            self.ids.history_label.text = 'Article Title: ' + str(obj.get_article_name) + '\n'
+            self.ids.history_label.text = 'Article Title: ' + obj.get_article_name() + '\n'
 
     def turn_on(self):
         self.display_info()
@@ -100,6 +99,7 @@ working_history = History()  # list of the attributes of previous articles. init
 class Data:
     def __init__(self, an_article, a_word, a_count):
         self.article_name = an_article
+        str(an_article)
         self.largest_word = a_word
         self.word_count = a_count
 
