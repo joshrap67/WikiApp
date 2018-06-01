@@ -38,17 +38,10 @@ class InteractionPanel(Widget):
 
     def display_info(self):
         new_article = self.random_article()
-        biggest_word = new_article.get_largest_word()
-        big_count = new_article.get_word_count()
-        title = new_article.get_article_name()
-        title = title.replace('- Wikipedia', '')
-        new_article.set_article_name(title)
-        # display to app window
-        self.ids.app_attributes.text = 'Article Title: '+title+' Most Common Noun: '+new_article.get_largest_word()
-        print('Title: '+title+' Most common noun is: \"' + biggest_word + '\" with a count of: ' + str(
-            big_count))
-        # store the article into history
-        self.store_history(new_article)
+        self.ids.app_attributes.text = repr(new_article) # display text to the app
+        print('Display Info Text #############################')
+        print(repr(new_article))
+        self.store_history(new_article)  # store the article into history
         self.update_history()
 
     @staticmethod
@@ -57,9 +50,12 @@ class InteractionPanel(Widget):
         working_history.set_history(attribute_obj)
 
     def update_history(self):
+        print('Update history text ##########################')
+        formatted_data = ''
         for obj in working_history.history:
-            print(repr(obj))
-            self.ids.history_label.text = 'Article Title: ' + obj.get_article_name() + '\n'
+            formatted_data+=repr(obj)+'\n'
+        print(formatted_data)
+        self.ids.history_label.text = formatted_data
 
     def turn_on(self):
         self.display_info()
@@ -98,8 +94,8 @@ working_history = History()  # list of the attributes of previous articles. init
 
 class Data:
     def __init__(self, an_article, a_word, a_count):
-        self.article_name = an_article
-        str(an_article)
+        fixed_name = an_article.replace('- Wikipedia', '')
+        self.article_name = fixed_name
         self.largest_word = a_word
         self.word_count = a_count
 
@@ -111,9 +107,6 @@ class Data:
 
     def get_word_count(self):
         return self.word_count
-
-    def set_article_name(self, an_article):
-        self.article_name = an_article
 
     def __repr__(self):
         return 'Article Name: '+str(self.article_name)+' Largest Word: '+str(self.get_largest_word())+ ' Count: '\
