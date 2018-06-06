@@ -5,6 +5,7 @@ from textblob import TextBlob
 from kivy.lang import Builder
 from kivy.uix.widget import Widget
 from kivy.app import App
+from kivy.uix.scrollview import ScrollView
 
 Builder.load_file('wiki.kv')
 
@@ -53,7 +54,7 @@ class InteractionPanel(Widget):
         print('Update history text ##########################')
         formatted_data = ''
         for obj in working_history.history:
-            formatted_data+=repr(obj)+'\n'
+            formatted_data += repr(obj)+'\n'
         print(formatted_data)
         self.ids.history_label.text = formatted_data
 
@@ -109,5 +110,5 @@ class Data:
         return self.word_count
 
     def __repr__(self):
-        return 'Article Name: '+str(self.article_name)+' Largest Word: '+str(self.get_largest_word())+ ' Count: '\
+        return 'Article Name: '+str(self.article_name)+' Largest Word: '+str(self.get_largest_word()) + ' Count: '\
                + str(self.word_count)
