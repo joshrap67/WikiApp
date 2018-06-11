@@ -6,11 +6,14 @@ from kivy.lang import Builder
 from kivy.uix.widget import Widget
 from kivy.app import App
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.listview import ListItemButton
+from kivy.properties import ObjectProperty
 
-Builder.load_file('wiki.kv')
+Builder.load_file('mainPage.kv')
 
 
-class InteractionPanel(Widget):
+class MainPage(Widget):
     @staticmethod
     def random_article():
         url = 'https://en.wikipedia.org/wiki/Special:Random'
@@ -55,7 +58,7 @@ class InteractionPanel(Widget):
         formatted_data = ''
         for obj in working_history.history:
             formatted_data += repr(obj)+'\n'
-        print(formatted_data)
+        print(formatted_data)  # for debugging purposes
         self.ids.history_label.text = formatted_data
 
     def turn_on(self):
@@ -66,9 +69,13 @@ class InteractionPanel(Widget):
         quit()
 
 
-class RunInteractionPanel(App):
+class ArticleContent(Widget):
+    pass
+
+
+class WikiHopper(App):
     def build(self):
-        return InteractionPanel()
+        return MainPage()
 
 
 class History:
