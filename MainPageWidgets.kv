@@ -1,0 +1,76 @@
+#:kivy 1.10.0
+#: import main WikiApp
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+
+
+<Row@BoxLayout>:
+    value: ''
+    Label:
+        text: root.value
+<MainPage>:
+    current_article: current_article
+    history_app: history_app
+    orientation: 'vertical'
+    GridLayout:
+        cols: 2
+        rows: 1
+        size_hint_y: None
+        height: dp(108)
+        padding: dp(8)
+        spacing: dp(16)
+        Button:
+            text: 'Start'
+            on_press: root.turn_on()
+        Button:
+            text: 'Quit'
+            on_press: root.turn_off()
+
+    GridLayout:
+        cols: 1
+        rows: 1
+        size_hint_y: None
+        height: dp(108)
+        padding: dp(8)
+        spacing: dp(16)
+        Label:
+            text: 'New Article'
+
+
+    RecycleView:
+        id: current_article
+        scroll_type: ['bars', 'content']
+        scroll_wheel_distance: dp(114)
+        bar_width: dp(10)
+        viewclass: 'Row'
+        RecycleBoxLayout:
+            default_size: None, dp(56)
+            default_size_hint: 1, None
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: 'vertical'
+            spacing: dp(2)
+
+    GridLayout:
+        cols: 1
+        rows: 1
+        size_hint_y: None
+        height: dp(108)
+        padding: dp(8)
+        spacing: dp(16)
+        Label:
+            text: 'Previous Articles'
+
+    RecycleView:
+        id: history_app
+        scroll_type: ['bars', 'content']
+        scroll_wheel_distance: dp(114)
+        bar_width: dp(10)
+        viewclass: 'Row'
+        RecycleBoxLayout:
+            default_size: None, dp(56)
+            default_size_hint: 1, None
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: 'vertical'
+            spacing: dp(2)
