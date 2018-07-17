@@ -1,0 +1,64 @@
+#:kivy 1.10.0
+#:import hex kivy.utils.get_color_from_hex
+
+<CurrentArtcleLabel@ButtonBehavior+Label>:
+    size_hint_y: None
+
+<CurrentArticleLayout@BoxLayout>:
+    orientation: 'vertical'
+    size_hint_y: None
+    height: self.minimum_height
+    CurrentArtcleLabel:
+        id: current_article_label
+        size_hint_y: None
+        on_release:
+            root.parent.parent.parent.launch_url()
+
+<HistoryLabel>:
+    size_hint_y: None
+    on_release:
+        root.parent.launch_url(self.id)
+
+<HistoryLayout>:
+    orientation: 'vertical'
+    size_hint_y: None
+    height: self.minimum_height
+
+<MainPage>:
+    cols: 1
+    Button:
+        background_color: hex('#66ff66')
+        size_hint_y: None
+        text: 'Fetch random article'
+        on_release: root.display_info()
+    GridLayout:
+        cols: 2
+        rows: 2
+        padding: 10
+        spacing: 10
+        Label:
+            canvas.before:
+                Color:
+                    rgba: hex('#66ff66')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            size_hint_y: None
+            color: hex('#000000')
+            text: 'Current Article'
+        Label:
+            canvas.before:
+                Color:
+                    rgba: hex('##66ff66')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            size_hint_y: None
+            color: hex('#000000')
+            text: 'Previous Articles'
+        ScrollView:
+            CurrentArticleLayout:
+                id: current_article_container
+        ScrollView:
+            HistoryLayout:
+                id: history_contianer
