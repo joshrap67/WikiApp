@@ -11,7 +11,7 @@ Python is required for this application to run (version 3.70 or greater).
 Pip, a package management system, is recommended to be installed as it allows for packages to be installed easily. Version 10.0.1 was used for the creation of this project.
 
 Included in the repository is a filename 'requirements.txt'. Using pip one can easily install the required python packages by simply running the following command in the directory of the project:
-`pip install -r 'requirements.txt'`
+`pip install -r requirements.txt`
 
 If pip is not used, the required packages to install are:
 - kivy (version 1.10.0)
